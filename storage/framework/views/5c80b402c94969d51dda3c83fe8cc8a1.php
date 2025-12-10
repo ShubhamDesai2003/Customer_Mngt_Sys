@@ -38,7 +38,7 @@
         <div class="card text-center">
             <div class="card-body">
                 <h5 class="card-title text-muted">Total Revenue</h5>
-                <h2 class="text-info">$<?php echo e(number_format($totalRevenue, 2)); ?></h2>
+                <h2 class="text-info">Rs.<?php echo e(number_format($totalRevenue, 2)); ?></h2>
             </div>
         </div>
     </div>
@@ -66,7 +66,7 @@
                             <tr>
                                 <td><a href="<?php echo e(route('orders.show', $order)); ?>"><?php echo e($order->order_number); ?></a></td>
                                 <td><?php echo e($order->customer->name ?? 'N/A'); ?></td>
-                                <td>$<?php echo e(number_format($order->amount, 2)); ?></td>
+                                <td>Rs.<?php echo e(number_format($order->amount, 2)); ?></td>
                                 <td>
                                     <span class="badge <?php echo e(strtolower($order->status)); ?>"><?php echo e($order->status); ?></span>
                                 </td>

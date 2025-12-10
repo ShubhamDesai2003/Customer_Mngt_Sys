@@ -52,7 +52,7 @@
                         <tr>
                             <td><strong><?php echo e($order->order_number); ?></strong></td>
                             <td><?php echo e($order->customer->name ?? 'N/A'); ?></td>
-                            <td>$<?php echo e(number_format($order->amount, 2)); ?></td>
+                            <td>Rs.<?php echo e(number_format($order->amount, 2)); ?></td>
                             <td>
                                 <span class="badge <?php echo e(strtolower($order->status)); ?>"><?php echo e($order->status); ?></span>
                             </td>
