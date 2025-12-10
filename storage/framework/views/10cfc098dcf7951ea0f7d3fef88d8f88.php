@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="<?php echo e(str_replace('_', '-', app()->getLocale())); ?>">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
+
+    <title><?php echo e(config('app.name', 'Laravel')); ?> - <?php echo $__env->yieldContent('title', 'CRM'); ?></title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #667eea;
+            --secondary-color: #764ba2;
+        }
+
+        body {
+            background-color: #f7fafc;
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .nav-link {
+            color: rgba(255,255,255,0.8) !important;
+            margin-left: 1rem;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: white !important;
+        }
+
+        .nav-link.active {
+            color: white !important;
+            border-bottom: 2px solid white;
+        }
+
+        .sidebar {
+            background: white;
+            border-right: 1px solid #e2e8f0;
+            min-height: calc(100vh - 60px);
+        }
+
+        .sidebar .nav-link {
+            color: #4a5568;
+            margin-left: 0;
+            border-left: 3px solid transparent;
+            padding-left: 20px;
+        }
+
+        .sidebar .nav-link:hover {
+            background-color: #f7fafc;
+            color: var(--primary-color);
+        }
+
+        .sidebar .nav-link.active {
+            background-color: #f7fafc;
+            color: var(--primary-color);
+            border-left-color: var(--primary-color);
+        }
+
+        .main-content {
+            padding: 2rem;
+        }
+
+        .card {
+            border: none;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            border: none;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+        }
+
+        .table {
+            background: white;
+        }
+
+        .table thead {
+            background-color: #f7fafc;
+        }
+
+        .badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+
+        .badge.pending {
+            background-color: #fef3c7;
+            color: #92400e;
+        }
+
+        .badge.completed {
+            background-color: #d1fae5;
+            color: #065f46;
+        }
+
+        .badge.cancelled {
+            background-color: #fee2e2;
+            color: #7f1d1d;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none;
+            }
+        }
+    </style>
+
+    <?php echo $__env->yieldContent('extra-styles'); ?>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="<?php echo e(route('dashboard')); ?>">
+                <i class="fas fa-chart-line"></i> <?php echo e(config('app.name', 'Laravel')); ?>
+
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <?php if(Route::has('login')): ?>
+                        <?php if(auth()->guard()->check()): ?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?php echo e(route('dashboard')); ?>">Dashboard</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?php echo e(route('customers.index')); ?>">Customers</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?php echo e(route('orders.index')); ?>">Orders</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
+                                    <i class="fas fa-user-circle"></i> <?php echo e(Auth::user()->name); ?>
+
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                    <li><a class="dropdown-item" href="<?php echo e(route('profile.edit')); ?>">Profile</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li>
+                                        <a class="dropdown-item" href="<?php echo e(route('logout')); ?>" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                            Logout
+                                        </a>
+                                    </li>
+                                </ul>
+                                <form id="logout-form" action="<?php echo e(route('logout')); ?>" method="POST" style="display: none;">
+                                    <?php echo csrf_field(); ?>
+                                </form>
+                            </li>
+                        <?php else: ?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?php echo e(route('login')); ?>">Login</a>
+                            </li>
+                            <?php if(Route::has('register')): ?>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="<?php echo e(route('register')); ?>">Register</a>
+                                </li>
+                            <?php endif; ?>
+                        <?php endif; ?>
+                    <?php endif; ?>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <?php if(auth()->guard()->check()): ?>
+        <div class="container-fluid">
+            <div class="row">
+                <!-- Sidebar -->
+                <nav class="col-md-2 d-md-block bg-white sidebar">
+                    <div class="position-sticky pt-3">
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link <?php echo e(request()->routeIs('dashboard') ? 'active' : ''); ?>" href="<?php echo e(route('dashboard')); ?>">
+                                    <i class="fas fa-home"></i> Dashboard
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link <?php echo e(request()->routeIs('customers.*') ? 'active' : ''); ?>" href="<?php echo e(route('customers.index')); ?>">
+                                    <i class="fas fa-users"></i> Customers
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link <?php echo e(request()->routeIs('orders.*') ? 'active' : ''); ?>" href="<?php echo e(route('orders.index')); ?>">
+                                    <i class="fas fa-shopping-cart"></i> Orders
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+
+                <!-- Main Content -->
+                <main class="col-md-10 ms-sm-auto px-md-4 main-content">
+                    <?php if($errors->any()): ?>
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>Error!</strong>
+                            <ul class="mb-0">
+                                <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <li><?php echo e($error); ?></li>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            </ul>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if(session('success')): ?>
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <?php echo e(session('success')); ?>
+
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php echo $__env->yieldContent('content'); ?>
+                </main>
+            </div>
+        </div>
+    <?php else: ?>
+        <div class="main-content">
+            <?php echo $__env->yieldContent('content'); ?>
+        </div>
+    <?php endif; ?>
+
+    <!-- Footer -->
+    <footer class="bg-light py-4 mt-5">
+        <div class="container text-center text-muted">
+            <p>&copy; <?php echo e(date('Y')); ?> <?php echo e(config('app.name', 'Laravel')); ?>. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <?php echo $__env->yieldContent('extra-scripts'); ?>
+</body>
+</html>
+<?php /**PATH E:\Zoro\Luffy\Projects\impact-guru-crm\resources\views/layouts/app.blade.php ENDPATH**/ ?>
