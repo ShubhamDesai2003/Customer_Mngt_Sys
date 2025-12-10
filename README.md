@@ -245,9 +245,9 @@ impact-guru-crm/
 │       └── NewOrderNotification.php
 ├── database/
 │   └── migrations/
-│       ├── 2024_01_01_000000_create_users_table.php
-│       ├── 2024_01_02_000000_create_customers_table.php
-│       └── 2024_01_03_000000_create_orders_table.php
+│       ├── create_users_table.php
+│       ├── create_customers_table.php
+│       └── create_orders_table.php
 ├── resources/
 │   └── views/
 │       ├── layouts/
