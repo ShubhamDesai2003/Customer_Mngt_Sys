@@ -54,10 +54,6 @@ class OrderController extends Controller
 
         Order::create($data);
 
-        // Trigger notification
-        $customer = Customer::find($data['customer_id']);
-        $customer->notify(new \App\Notifications\NewOrderNotification());
-
         return redirect()->route('orders.index')->with('success', 'Order created successfully.');
     }
 
