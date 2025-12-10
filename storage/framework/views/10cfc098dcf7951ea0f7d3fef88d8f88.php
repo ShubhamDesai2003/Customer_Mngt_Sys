@@ -48,27 +48,64 @@
         }
 
         .sidebar {
-            background: white;
-            border-right: 1px solid #e2e8f0;
+            background: linear-gradient(180deg, #2c3e50 0%, #34495e 100%);
+            border-right: 2px solid var(--primary-color);
             min-height: calc(100vh - 60px);
+            padding: 0;
+            box-shadow: 2px 0 15px rgba(0,0,0,0.1);
+        }
+
+        .sidebar .position-sticky {
+            padding-top: 20px !important;
+            padding-bottom: 20px;
         }
 
         .sidebar .nav-link {
-            color: #4a5568;
+            color: #ecf0f1;
             margin-left: 0;
-            border-left: 3px solid transparent;
+            border-left: 4px solid transparent;
             padding-left: 20px;
+            padding: 12px 20px;
+            font-weight: 500;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .sidebar .nav-link i {
+            width: 20px;
+            text-align: center;
+            font-size: 16px;
         }
 
         .sidebar .nav-link:hover {
-            background-color: #f7fafc;
-            color: var(--primary-color);
+            background-color: rgba(102, 126, 234, 0.1);
+            color: #fff;
+            border-left-color: var(--primary-color);
+            padding-left: 20px;
+            transform: translateX(5px);
         }
 
         .sidebar .nav-link.active {
-            background-color: #f7fafc;
-            color: var(--primary-color);
+            background: linear-gradient(90deg, rgba(102, 126, 234, 0.2) 0%, rgba(102, 126, 234, 0.05) 100%);
+            color: #fff;
             border-left-color: var(--primary-color);
+            border-left: 4px solid var(--primary-color);
+            background-color: rgba(102, 126, 234, 0.15);
+            box-shadow: inset 3px 0 0 var(--primary-color);
+        }
+
+        .sidebar hr {
+            border-color: rgba(255, 255, 255, 0.1);
+            margin: 15px 0;
+        }
+
+        .sidebar .text-muted {
+            color: #95a5a6 !important;
+            padding: 12px 20px;
+            font-size: 13px;
         }
 
         .main-content {
