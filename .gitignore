@@ -1,0 +1,53 @@
+# Dependencies
+/node_modules
+/vendor
+composer.phar
+
+# Environment variables
+.env
+.env.backup
+.env.*.backup
+
+# Laravel specific
+/public/hot
+/public/storage
+/storage/*.key
+/bootstrap/cache
+.phpunit.result.cache
+
+# IDE & Editor
+.idea
+.vscode
+*.swp
+*.swo
+*~
+.project
+.pydevproject
+.settings/
+*.sublime-workspace
+*.sublime-project
+.DS_Store
+
+# OS
+Thumbs.db
+.DS_Store
+ehthumbs.db
+
+# Config files
+docker-compose.override.yml
+Homestead.json
+Homestead.yaml
+auth.json
+
+# Database
+database.sql
+
+# AI Generated files - Keep these out
+00_START_HERE.md
+DELIVERY_REPORT.md
+DEPLOYMENT_GUIDE.md
+DOCUMENTATION_INDEX.md
+FINAL_CHECKLIST.md
+PROJECT_SUMMARY.md
+SETUP_GUIDE.md
+API_DOCUMENTATION.md
