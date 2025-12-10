@@ -54,7 +54,7 @@
                         <tr>
                             <td><strong>{{ $order->order_number }}</strong></td>
                             <td>{{ $order->customer->name ?? 'N/A' }}</td>
-                            <td>${{ number_format($order->amount, 2) }}</td>
+                            <td>Rs.{{ number_format($order->amount, 2) }}</td>
                             <td>
                                 <span class="badge {{ strtolower($order->status) }}">{{ $order->status }}</span>
                             </td>

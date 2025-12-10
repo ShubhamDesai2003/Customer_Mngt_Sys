@@ -61,7 +61,7 @@
                     <td>{{ $order->id }}</td>
                     <td>{{ $order->order_number }}</td>
                     <td>{{ $order->customer->name }}</td>
-                    <td>${{ number_format($order->amount, 2) }}</td>
+                    <td>Rs.{{ number_format($order->amount, 2) }}</td>
                     <td>{{ $order->status }}</td>
                     <td>{{ $order->order_date->format('M d, Y') }}</td>
                 </tr>

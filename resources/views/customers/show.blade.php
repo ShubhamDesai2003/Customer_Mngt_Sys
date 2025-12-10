@@ -54,7 +54,7 @@
                         @forelse($customer->orders as $order)
                             <tr>
                                 <td><strong>{{ $order->order_number }}</strong></td>
-                                <td>${{ number_format($order->amount, 2) }}</td>
+                                <td>Rs.{{ number_format($order->amount, 2) }}</td>
                                 <td><span class="badge {{ strtolower($order->status) }}">{{ $order->status }}</span></td>
                                 <td>{{ $order->created_at->format('M d, Y') }}</td>
                                 <td><a href="{{ route('orders.show', $order) }}" class="btn btn-sm btn-info">View</a></td>

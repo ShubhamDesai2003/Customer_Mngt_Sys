@@ -40,7 +40,7 @@
         <div class="card text-center">
             <div class="card-body">
                 <h5 class="card-title text-muted">Total Revenue</h5>
-                <h2 class="text-info">${{ number_format($totalRevenue, 2) }}</h2>
+                <h2 class="text-info">Rs.{{ number_format($totalRevenue, 2) }}</h2>
             </div>
         </div>
     </div>
@@ -68,7 +68,7 @@
                             <tr>
                                 <td><a href="{{ route('orders.show', $order) }}">{{ $order->order_number }}</a></td>
                                 <td>{{ $order->customer->name ?? 'N/A' }}</td>
-                                <td>${{ number_format($order->amount, 2) }}</td>
+                                <td>Rs.{{ number_format($order->amount, 2) }}</td>
                                 <td>
                                     <span class="badge {{ strtolower($order->status) }}">{{ $order->status }}</span>
                                 </td>

@@ -23,7 +23,7 @@
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <p><strong>Order Number:</strong> {{ $order->order_number }}</p>
-                        <p><strong>Amount:</strong> ${{ number_format($order->amount, 2) }}</p>
+                        <p><strong>Amount:</strong> Rs.{{ number_format($order->amount, 2) }}</p>
                         <p><strong>Status:</strong> <span class="badge {{ strtolower($order->status) }}">{{ $order->status }}</span></p>
                     </div>
                     <div class="col-md-6">
@@ -63,7 +63,7 @@
             <div class="card-body">
                 <div class="summary-item d-flex justify-content-between mb-2">
                     <span>Amount:</span>
-                    <strong>${{ number_format($order->amount, 2) }}</strong>
+                    <strong>Rs.{{ number_format($order->amount, 2) }}</strong>
                 </div>
                 <hr>
                 <div class="summary-item d-flex justify-content-between mb-2">
