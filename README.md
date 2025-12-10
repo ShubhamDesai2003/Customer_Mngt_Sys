@@ -140,7 +140,7 @@ Access the application at: **http://localhost:8000**
 ## 🚀 Quick Start
 
 ### Test Credentials
-- **Email:** `test@example.com`
+- **Email:** `shubhamdesai20003@gmail.com`
 - **Password:** `password`
 
 ### First Steps
